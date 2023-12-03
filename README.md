@@ -34,7 +34,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Usage
 To run the server locally:
 ```
-node server.js
+node index.js
 ```
 
 ## Deployment
