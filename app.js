@@ -31,10 +31,10 @@ app.get("/", (req, res) => {
   res.send("Sever is running!");
 });
 
-// server.listen(process.env.SERVER_PORT || 8080, () => {
+// server.listen(process.env.PORT || 8080, () => {
 //   console.log("Server is Running!");
 // });
 
-app.listen(process.env.SERVER_PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Server started!");
 });
