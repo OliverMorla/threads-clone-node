@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+const https = require("https");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
 app.use(cors());
 
-app.set("port", process.env.SERVER_PORT || 8080)
+// app.set("port", process.env.SERVER_PORT || 8080)
 
 const server = http.createServer(app);
 
@@ -30,7 +31,10 @@ app.get("/", (req, res) => {
   res.send("Sever is running!");
 });
 
-server.listen(process.env.SERVER_PORT || 8080, () => {
-  console.log("Server is Running!");
-});
+// server.listen(process.env.SERVER_PORT || 8080, () => {
+//   console.log("Server is Running!");
+// });
 
+app.listen(process.env.SERVER_PORT8080, () => {
+  console.log("Server started!");
+});
