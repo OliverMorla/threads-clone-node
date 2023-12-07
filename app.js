@@ -4,10 +4,9 @@ const http = require("http");
 const https = require("https");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const { SocketAddress } = require("net");
 
 app.use(cors());
-
-// app.set("port", process.env.SERVER_PORT || 8080)
 
 const server = http.createServer(app);
 
@@ -18,13 +17,9 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  const timestamp = new Date().toLocaleString();
-  console.log(`You are connected, socket id: ${socket.id} time ${timestamp}`);
-});
-
-io.on("message", ({ message, username, userImage }) => {
-  const timeStamp = new Date().toLocaleString();
-  console.log({ message, username, userImage, timeStamp });
+  socket.on("send-message", (message) => {
+    io.emit("message-input", message);
+  });
 });
 
 app.get("/", (req, res) => {
@@ -34,7 +29,3 @@ app.get("/", (req, res) => {
 server.listen(process.env.PORT || 8080, () => {
   console.log("Server is Running!");
 });
-
-// app.listen(process.env.PORT || 8080, () => {
-//   console.log("Server started!");
-// });
